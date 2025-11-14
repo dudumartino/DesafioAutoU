@@ -6,7 +6,10 @@ A aplicação classifica os e-mails em categorias (Produtivo ou Improdutivo) com
 
 # Demonstração
 
-links imagens
+![image alt](https://github.com/dudumartino/DesafioAutoU/blob/4c1e51bda11fedd5953950c6a5e72b2337a8774f/ClassificadorEmailHome.png)
+![image alt]()
+![image alt]()
+![image alt]()
 
 # Funcionalidades Principais
 
