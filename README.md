@@ -14,9 +14,9 @@ links imagens
 
 .Entrada Múltipla: upload de arquivos .txt, arquivos .pdf e inserção manual de texto.
 
-.Respostas Inteligentes: A IA gera três informações:
-1.Classificação: Produtivo ou Improdutivo.
-2.Conteúdo: Um resumo de uma linha (ex: "Solicitação de agendamento").
+.Respostas Inteligentes: A IA gera três informações:  
+1.Classificação: Produtivo ou Improdutivo.  
+2.Conteúdo: Um resumo de uma linha (ex: "Solicitação de agendamento").  
 3.Mensagem Sugerida: Uma resposta profissional pronta a usar.
 
 .Interface Moderna com: Modo Noturno, Botão "copiar", Feedback visual no carregamento da classificação e desgin personalizado com a cor da identidade visual da AutoU.
