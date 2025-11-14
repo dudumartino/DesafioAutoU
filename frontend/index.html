@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classificador de E-mail</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container-gradient-border">
+        <div class="container-content">
+
+            <button id="themeToggleButton" title="Alterar tema">
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+            
+            <h1>Classificador de E-mail</h1>
+            
+            <form id="classificationForm">
+                
+                <label for="emailFile">1. Fazer upload de ficheiro (.txt ou .pdf):</label>
+                <input type="file" id="emailFile" name="file" accept=".txt,.pdf">
+                
+                <div class="separator">--- OU ---</div>
+        
+                <label for="emailText">2. Inserir texto do e-mail manualmente:</label>
+                <textarea id="emailText" name="email_text" placeholder="Cole o texto do e-mail aqui..."></textarea>
+                
+                <button type="submit" id="classifyButton">
+                    <span class="btn-text">Classificar</span>
+                    <div class="spinner"></div>
+                </button>
+            </form>
+            
+            <div id="error"></div>
+        
+            <div id="result" style="display:none;">
+                
+                <div class="result-header">
+                    <h3>Resultado da Classificação</h3>
+                    
+                    <button id="copyButton" title="Copiar" style="display: none;">
+                        <svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </button>
+                </div>
+                
+                <p><strong>Classificação:</strong> <span id="classification"></span></p>
+                <p><strong>Conteúdo:</strong> <span id="content"></span></p>
+                <p><strong>Mensagem Sugerida:</strong></p>
+                <pre id="suggestedMessage"></pre>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
