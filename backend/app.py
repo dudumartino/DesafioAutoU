@@ -1,36 +1,28 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from pypdf import PdfReader # Usando a biblioteca 'pypdf' atualizada
+from pypdf import PdfReader 
 import os
-import openai # Importando a OpenAI
+import openai 
 import json
-from dotenv import load_dotenv # Para ler o .env
+from dotenv import load_dotenv 
 
-# --- 1. Carregar variáveis de ambiente ---
 load_dotenv()
-# A biblioteca da OpenAI (v1.0+) lê a chave 'OPENAI_API_KEY' 
-# automaticamente do ambiente após o load_dotenv().
 try:
     client = openai.OpenAI()
     print("Cliente OpenAI inicializado com sucesso.")
 except openai.OpenAIError as e:
     print("Erro ao inicializar o cliente OpenAI. Verifique sua chave API.")
     print(e)
-# ------------------------------------------
 
 app = Flask(__name__)
 CORS(app)
 
-# Rota /classificar
 @app.route('/classificar', methods=['POST'])
 def classify_endpoint():
     
-    text = "" # Variável para guardar o texto extraído
+    text = "" 
 
     try:
-        # --- 2. Lógica para extrair o texto ---
-        
-        # Cenário 1: O usuário enviou um ARQUIVO
         if 'file' in request.files and request.files['file'].filename != '':
             file = request.files['file']
             
@@ -40,7 +32,7 @@ def classify_endpoint():
                 text = file.read().decode('utf-8')
                 
             elif extension.lower() == '.pdf':
-                reader = PdfReader(file) # pypdf funciona aqui
+                reader = PdfReader(file) 
                 for page in reader.pages:
                     extracted = page.extract_text()
                     if extracted:
@@ -48,19 +40,15 @@ def classify_endpoint():
             else:
                 return jsonify({'error': 'Formato de arquivo não suportado (apenas .txt e .pdf)'}), 400
         
-        # Cenário 2: O usuário digitou TEXTO MANUALMENTE (Lógica Corrigida)
         elif 'email_text' in request.form:
-            text = request.form['email_text'] # Apanha o texto, mesmo que seja ' '
+            text = request.form['email_text'] 
         
         else:
              return jsonify({'error': 'Nenhum arquivo ou texto enviado'}), 400
 
-        # Verificação movida para depois de apanhar o texto
-        # Checa se o texto final está vazio (ex: PDF ou TXT em branco, ou ' ' manual)
         if not text.strip():
              return jsonify({'error': 'Nenhum texto para classificar (arquivo vazio?)'}), 400
 
-        # --- 3. Lógica do GPT (PROMPT REFINADO) ---
         
         system_prompt = """
         Você é um assistente de e-mail profissional de uma empresa financeira.
@@ -83,7 +71,6 @@ def classify_endpoint():
         
         user_prompt = f"Por favor, classifique este e-mail:\n\n\"{text}\""
 
-        # Chamada para a API da OpenAI
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             response_format={ "type": "json_object" },
@@ -98,7 +85,7 @@ def classify_endpoint():
         return json_response
             
     except Exception as e:
-        # Erro genérico
+        
         return jsonify({'error': f'Erro interno do servidor: {str(e)}'}), 500
 
 if __name__ == '__main__':
