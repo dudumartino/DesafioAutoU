@@ -30,24 +30,17 @@ O projeto é dividido em duas partes principais:
 
 .Backend:
 
-Python 3
-
-Flask: Para criar o servidor web e a API REST.
-
-OpenAI: Para fazer as chamadas ao modelo GPT.
-
-PyMuPDF (fitz): Para a extração de texto de arquivos .pdf.
-
-python-dotenv: Para gestão segura das chaves de API.
-
+Python 3  
+Flask: Para criar o servidor web e a API REST.  
+OpenAI: Para fazer as chamadas ao modelo GPT.  
+PyMuPDF (fitz): Para a extração de texto de arquivos .pdf.  
+python-dotenv: Para gestão segura das chaves de API.  
 CORS: Para permitir a comunicação entre o frontend e o backend.
 
 .Frontend:
 
-HTML5
-
-CSS3
-
+HTML5  
+CSS3  
 JavaScript (ES6+): Para a lógica do frontend, chamadas fetch à API e manipulação do DOM.
 
 # Abordagem de PNL (Processamento de Linguagem Natural)
@@ -64,7 +57,7 @@ Existem duas formas de testar esta aplicação:
 
 A aplicação está hospedada na plataforma Render e está pronta para uso imediato. Nenhuma instalação ou configuração de chave de API é necessária.
 
-Link: [COLE AQUI O SEU LINK DO RENDER QUANDO ESTIVER PRONTO]
+Link: https://desafio-autou-vuof.onrender.com/
 
 OBS: após alguns minutos de inatividade a API entra em modo de hibernação, ao ser requisitada novamente ela demora um pouco para "acordar", mas apenas na primeira vez e dura por volta de 30-60 segundos para voltar a funcionar.
 
