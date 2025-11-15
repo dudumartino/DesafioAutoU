@@ -25,12 +25,6 @@ origins = [
 
 CORS(app, resources={r"/*": {"origins": origins}}, supports_credentials=True)
 
-@app.after_request
-def after_request(response):
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
-    return response
-
 @app.route('/classificar', methods=['POST'])
 def classify_endpoint():
     
@@ -101,4 +95,5 @@ def classify_endpoint():
         return jsonify({'error': f'Erro interno do servidor: {str(e)}'}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
