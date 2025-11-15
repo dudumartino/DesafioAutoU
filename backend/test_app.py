@@ -27,7 +27,8 @@ def test_empty_text_error(client):
     }
     response = client.post('/classificar', data=data, content_type='multipart/form-data')
     assert response.status_code == 400
-    assert b"Nenhum texto para classificar" in response.data
+    
+    assert b"Nenhum arquivo ou texto enviado" in response.data
 
 def test_classify_manual_text_success(client, mocker):
     class MockMessage:

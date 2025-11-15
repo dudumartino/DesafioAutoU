@@ -1,6 +1,6 @@
 # Desafio AutoU: Classificador Inteligente de E-mails
 
-Este projeto é uma aplicação web desenvolvida como parte do desafio prático de estágio da AutoU. O objetivo é criar uma ferramenta que utiliza Inteligência Artificial (OpenAI GPT) para automatizar a triagem e classificação de e-mails, otimizando o fluxo de trabalho de uma equipa.
+Este projeto é uma aplicação web desenvolvida como parte do desafio prático de estágio da AutoU. O objetivo é criar uma ferramenta que utiliza Inteligência Artificial (OpenAI GPT) para automatizar a triagem e classificação de e-mails, otimizando o fluxo de trabalho de uma equipe.
 
 A aplicação classifica os e-mails em categorias (Produtivo ou Improdutivo) com base no seu conteúdo e, em seguida, gera um resumo do tópico e uma resposta profissional sugerida, adequada ao contexto.
 
@@ -24,6 +24,8 @@ A aplicação classifica os e-mails em categorias (Produtivo ou Improdutivo) com
 
 .Interface Moderna com: Modo Noturno, Botão "copiar", Feedback visual no carregamento da classificação e desgin personalizado com a cor da identidade visual da AutoU.
 
+.Teste de backend: O projeto inclui um conjunto de testes unitários (pytest) para garantir que a lógica do servidor (extração de arquivos, tratamento de erros) funciona como esperado.
+
 # Tecnologias Utilizadas
 
 O projeto é dividido em duas partes principais:
@@ -31,11 +33,13 @@ O projeto é dividido em duas partes principais:
 .Backend:
 
 Python 3  
-Flask: Para criar o servidor web e a API REST.  
+Flask: Para criar o servidor web e a API REST.
+Gunicorn: Para servir a aplicação em produção (no Render).  
 OpenAI: Para fazer as chamadas ao modelo GPT.  
-PyMuPDF (fitz): Para a extração de texto de arquivos .pdf.  
+pypdf: Para a extração de texto de ficheiros .pdf (a biblioteca moderna que substitui PyPDF2 e PyMuPDF). 
 python-dotenv: Para gestão segura das chaves de API.  
-CORS: Para permitir a comunicação entre o frontend e o backend.
+Pytest / pytest-mock: Para os testes unitários do backend.
+Flask-cors: Para permitir a comunicação entre o frontend e o backend.
 
 .Frontend:
 
@@ -59,7 +63,7 @@ A aplicação está hospedada na plataforma Render e está pronta para uso imedi
 
 Link: https://desafio-autou-vuof.onrender.com/
 
-OBS: após alguns minutos de inatividade a API entra em modo de hibernação, ao ser requisitada novamente ela demora um pouco para "acordar", mas apenas na primeira vez e dura por volta de 30-60 segundos para voltar a funcionar.
+OBS: após 15 minutos de inatividade a API entra em modo de hibernação, ao ser requisitada novamente ela demora um pouco para "acordar", mas apenas na primeira vez e dura por volta de 30-60 segundos para voltar a funcionar.
 
 .Opção 2: Guia de Instalação Local
 
@@ -91,7 +95,7 @@ Ativar no macOS/Linux:
 source venv/bin/activate
 
 .Instale as dependências do Backend:  
-(Isto irá instalar Flask, OpenAI, PyMuPDF, etc.)
+(Isto irá instalar Flask, OpenAI, pypdf, etc.)
 
 pip install -r backend/requirements.txt
 
@@ -116,3 +120,10 @@ Vá ao arquivo index.html, dê um clique com botão direito e selecione "open wi
 Isto abrirá a aplicação no seu navegador padrão.
 
 Agora já pode testar a aplicação!
+
+# Implementações futuras
+
+Caso este projeto continuasse a ser desenvolvido, as seguintes funcionalidades seriam priorizadas para torná-lo ainda mais robusto e útil:
+
+* Integração com API do gmail para ler os e-mails reais recebidos.   
+.Integração com API do Google Calendar para marcar compromissos no calendário.  
