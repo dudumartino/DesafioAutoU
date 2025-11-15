@@ -1,10 +1,10 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from pypdf import PdfReader 
+from pypdf import PdfReader
 import os
-import openai 
+import openai
 import json
-from dotenv import load_dotenv 
+from dotenv import load_dotenv
 
 load_dotenv()
 try:
@@ -16,11 +16,13 @@ except openai.OpenAIError as e:
 
 app = Flask(__name__)
 origins = [
-    "http://127.0.0.1:5500", 
+    "https://desafio-autou-vuof.onrender.com", 
+    "http://127.0.0.1:5500",
     "http://localhost:5500",
     "null" 
 ]
-CORS(app, resources={r"/classificar": {"origins": origins}})
+CORS(app, resources={r"/*": {"origins": origins}})
+
 
 @app.route('/classificar', methods=['POST'])
 def classify_endpoint():
@@ -37,7 +39,7 @@ def classify_endpoint():
                 text = file.read().decode('utf-8')
                 
             elif extension.lower() == '.pdf':
-                reader = PdfReader(file) 
+                reader = PdfReader(file)
                 for page in reader.pages:
                     extracted = page.extract_text()
                     if extracted:
@@ -45,8 +47,8 @@ def classify_endpoint():
             else:
                 return jsonify({'error': 'Formato de arquivo não suportado (apenas .txt e .pdf)'}), 400
         
-        elif 'email_text' in request.form:
-            text = request.form['email_text'] 
+        elif 'email_text' in request.form and request.form['email_text'].strip() != '':
+            text = request.form['email_text']
         
         else:
              return jsonify({'error': 'Nenhum arquivo ou texto enviado'}), 400
@@ -90,7 +92,6 @@ def classify_endpoint():
         return json_response
             
     except Exception as e:
-        
         return jsonify({'error': f'Erro interno do servidor: {str(e)}'}), 500
 
 if __name__ == '__main__':
