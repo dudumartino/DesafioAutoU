@@ -48,6 +48,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const suggestedMessagePre = document.getElementById('suggestedMessage');
     
     const copyButton = document.getElementById('copyButton');
+    
+    textInput.addEventListener('input', () => {
+        if (textInput.value.trim().length > 0) {
+            fileInput.disabled = true;
+        } else {
+            fileInput.disabled = false;
+        }
+    });
+
+    fileInput.addEventListener('change', () => {
+        if (fileInput.files.length > 0) {
+            textInput.disabled = true;
+        } else {
+            textInput.disabled = false;
+        }
+    });
+    
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault(); 
@@ -110,6 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             fileInput.value = null; 
             textInput.value = ''; 
+            
+            fileInput.disabled = false;
+            textInput.disabled = false;
         }
     });
     

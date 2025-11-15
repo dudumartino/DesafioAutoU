@@ -15,7 +15,12 @@ except openai.OpenAIError as e:
     print(e)
 
 app = Flask(__name__)
-CORS(app)
+origins = [
+    "http://127.0.0.1:5500", 
+    "http://localhost:5500",
+    "null" 
+]
+CORS(app, resources={r"/classificar": {"origins": origins}})
 
 @app.route('/classificar', methods=['POST'])
 def classify_endpoint():
