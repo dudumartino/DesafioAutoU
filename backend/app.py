@@ -15,14 +15,21 @@ except openai.OpenAIError as e:
     print(e)
 
 app = Flask(__name__)
+
 origins = [
-    "https://desafio-autou-vuof.onrender.com", 
+    "https://desafio-autou-vuof.onrender.com",
     "http://127.0.0.1:5500",
     "http://localhost:5500",
-    "null" 
+    "null"
 ]
-CORS(app, resources={r"/*": {"origins": origins}})
 
+CORS(app, resources={r"/*": {"origins": origins}}, supports_credentials=True)
+
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+    return response
 
 @app.route('/classificar', methods=['POST'])
 def classify_endpoint():
@@ -56,7 +63,6 @@ def classify_endpoint():
         if not text.strip():
              return jsonify({'error': 'Nenhum texto para classificar (arquivo vazio?)'}), 400
 
-        
         system_prompt = """
         Você é um assistente de e-mail profissional de uma empresa financeira.
         A sua tarefa é analisar o e-mail do utilizador e devolver um JSON com TRÊS chaves:
@@ -89,7 +95,7 @@ def classify_endpoint():
         
         json_response = response.choices[0].message.content
         
-        return json_response
+        return jsonify(json.loads(json_response))
             
     except Exception as e:
         return jsonify({'error': f'Erro interno do servidor: {str(e)}'}), 500
