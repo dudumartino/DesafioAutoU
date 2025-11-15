@@ -13,24 +13,24 @@ A aplicação classifica os e-mails em categorias (Produtivo ou Improdutivo) com
 
 # Funcionalidades Principais
 
-.Classificação por IA: Utiliza o modelo gpt-3.5-turbo da OpenAI para uma análise de contexto precisa.
+* Classificação por IA: Utiliza o modelo gpt-3.5-turbo da OpenAI para uma análise de contexto precisa.
 
-.Entrada Múltipla: upload de arquivos .txt, arquivos .pdf e inserção manual de texto.
+* Entrada Múltipla: upload de arquivos .txt, arquivos .pdf e inserção manual de texto.
 
-.Respostas Inteligentes: A IA gera três informações:  
-1.Classificação: Produtivo ou Improdutivo.  
-2.Conteúdo: Um resumo de uma linha (ex: "Solicitação de agendamento").  
-3.Mensagem Sugerida: Uma resposta profissional pronta a usar.
+* Respostas Inteligentes: A IA gera três informações:  
+1. Classificação: Produtivo ou Improdutivo.  
+2. Conteúdo: Um resumo de uma linha (ex: "Solicitação de agendamento").  
+3. Mensagem Sugerida: Uma resposta profissional pronta a usar.
 
-.Interface Moderna com: Modo Noturno, Botão "copiar", Feedback visual no carregamento da classificação e desgin personalizado com a cor da identidade visual da AutoU.
+* Interface Moderna com: Modo Noturno, Botão "copiar", Feedback visual no carregamento da classificação e desgin personalizado com a cor da identidade visual da AutoU.
 
-.Teste de backend: O projeto inclui um conjunto de testes unitários (pytest) para garantir que a lógica do servidor (extração de arquivos, tratamento de erros) funciona como esperado.
+* Teste de backend: O projeto inclui um conjunto de testes unitários (pytest) para garantir que a lógica do servidor (extração de arquivos, tratamento de erros) funciona como esperado.
 
 # Tecnologias Utilizadas
 
 O projeto é dividido em duas partes principais:
 
-.Backend:
+* Backend:
 
 Python 3  
 Flask: Para criar o servidor web e a API REST.
@@ -41,7 +41,7 @@ python-dotenv: Para gestão segura das chaves de API.
 Pytest / pytest-mock: Para os testes unitários do backend.
 Flask-cors: Para permitir a comunicação entre o frontend e o backend.
 
-.Frontend:
+* Frontend:
 
 HTML5  
 CSS3  
@@ -57,7 +57,7 @@ Motivo: As técnicas clássicas são projetadas para modelos de IA mais antigos,
 
 Existem duas formas de testar esta aplicação:
 
-.Opção 1: Aplicação Online (Recomendado)
+* Opção 1: Aplicação Online (Recomendado)
 
 A aplicação está hospedada na plataforma Render e está pronta para uso imediato. Nenhuma instalação ou configuração de chave de API é necessária.
 
@@ -65,17 +65,17 @@ Link: https://desafio-autou-vuof.onrender.com/
 
 OBS: após 15 minutos de inatividade a API entra em modo de hibernação, ao ser requisitada novamente ela demora um pouco para "acordar", mas apenas na primeira vez e dura por volta de 30-60 segundos para voltar a funcionar.
 
-.Opção 2: Guia de Instalação Local
+* Opção 2: Guia de Instalação Local
 
 Se preferir baixar o código e executá-lo na sua própria máquina, siga os passos abaixo:
 
-.Pré-requisitos
+* Pré-requisitos
 
 Python 3.8 ou superior.
 
 Uma Chave de API da OpenAI válida (com créditos ou método de pagamento configurado).
 
-.Guia de Instalação
+* Guia de Instalação
 
 Clone o repositório:
 
@@ -85,7 +85,7 @@ cd DesafioAutoU
 Crie e ative um ambiente virtual:  
 (Isto isola as dependências do projeto.)
 
-.Criar o ambiente:  
+* Criar o ambiente:  
 python -m venv venv
 
 Ativar no Windows:  
@@ -94,19 +94,19 @@ Ativar no Windows:
 Ativar no macOS/Linux:
 source venv/bin/activate
 
-.Instale as dependências do Backend:  
+* Instale as dependências do Backend:  
 (Isto irá instalar Flask, OpenAI, pypdf, etc.)
 
 pip install -r backend/requirements.txt
 
-.Configure a sua Chave de API:
+* Configure a sua Chave de API:
 
 Na pasta raiz do projeto (DesafioAutoU/), crie um ficheiro chamado .env.  
 Abra este ficheiro e adicione a sua chave da OpenAI da seguinte forma:
 
 OPENAI_API_KEY='sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
-.Inicie o Servidor Backend:  
+* Inicie o Servidor Backend:  
 No terminal (com o venv ativo), execute:
 
 python backend/app.py
@@ -125,5 +125,6 @@ Agora já pode testar a aplicação!
 
 Caso este projeto continuasse a ser desenvolvido, as seguintes funcionalidades seriam priorizadas para torná-lo ainda mais robusto e útil:
 
-* Integração com API do gmail para ler os e-mails reais recebidos.   
-.Integração com API do Google Calendar para marcar compromissos no calendário.  
+* Integração com API do gmail para ler os e-mails reais recebidos.
+     
+* Integração com API do Google Calendar para marcar compromissos no calendário.  
